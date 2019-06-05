@@ -202,6 +202,50 @@ def eg8():
     plt.tight_layout()
     plt.savefig('examples/example8.png')
 
+# Example 9 - show differences between Type I, Ia, Ib, II, IIa, IIb
+def eg9():
+    s1 = 333
+    s2 = 5
+    plt.figure(figsize=(18,9))
+
+    plt.subplot(2,3,1)
+    tree.draw_joshua_tree(seed=s1, **config.tree_type_i)
+    plt.axis('equal')
+    plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
+    plt.ylabel('Type I (seed={})'.format(s1), fontsize=20)
+    plt.title('')
+
+    plt.subplot(2,3,2)
+    tree.draw_joshua_tree(seed=s1, **config.tree_type_ia)
+    plt.axis('equal')
+    plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
+    plt.title("Type a", fontsize=20)
+
+    plt.subplot(2,3,3)
+    tree.draw_joshua_tree(seed=s1, **config.tree_type_ib)
+    plt.axis('equal')
+    plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
+    plt.title("Type b", fontsize=20)
+
+    plt.subplot(2,3,4)
+    tree.draw_joshua_tree(seed=s2, **config.tree_type_ii)
+    plt.axis('equal')
+    plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
+    plt.ylabel('Type II (seed={})'.format(s2), fontsize=20)
+
+    plt.subplot(2,3,5)
+    tree.draw_joshua_tree(seed=s2, **config.tree_type_iia)
+    plt.axis('equal')
+    plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
+
+    plt.subplot(2,3,6)
+    tree.draw_joshua_tree(seed=s2, **config.tree_type_iib)
+    plt.axis('equal')
+    plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
+        
+    plt.tight_layout()
+    plt.savefig('examples/example9.png')
+
 # Main
 def main():
   eg1()
@@ -212,6 +256,7 @@ def main():
   eg6()
   eg7()
   eg8()
+  eg9()
   
 if __name__== "__main__":
   main()
