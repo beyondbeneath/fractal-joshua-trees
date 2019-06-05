@@ -49,6 +49,17 @@ Each of these types is mutated twice to produce new varients: firstly by reducin
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example9.png" height=400px>
 
+## Scenes
+
+There are a number of simple functions to produce interesting looking scenes. A scene in this context it typically made up of at least a gradient sky background (`landscape.draw_sky`), and random terrain (`landscape.draw_terrain`) - though may optionally include some stars (`landscape.draw_stars`) and simulated Sun/Moon brightening (`landscape.draw_sun`). Most of these functions require arguments representing the width and height of the canvas (`w` and `h` respectively). For full details, see the examples ([script](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/example.py) and [gallery](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples)) and parameter documentation.
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example5.png" height=400px>
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example7.png" height=400px>
+
+There are a range of interesting backgrounds to choose from, have fun exploring!
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example8.png" height=600px>
+
 ## Acknowledgements
 
 * Most of the beautiful sky gradients are from [uiGradients](https://uigradients.com/)
