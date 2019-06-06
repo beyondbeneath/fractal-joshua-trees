@@ -140,6 +140,36 @@ While quite boring on it's own (and _somewhat_ off-topic), I've kept one of the 
 </p>
 </details>
 
+<details><summary>[EXPAND] Trees; spikes</summary>
+<p>
+
+This is getting into the weeds a bit, and while it is hoped that you won't need to modify or call the `tree.draw_spikes()` function (it is called automatically from within the Joshua Tree routines) here are the details in case you need to modify anything. The fastest way to modify the way the spikey leaves look would be to 1) modify `config.spikes_*` for the parameters; and 2) optionally modify the `draw_texture` parameter in the Joshua Tree functions (to toggle which of the three spike variants are drawn each time).
+
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`x1`|float||Initial lower-mid `x`-coordinate of rectangle defining a branch segment|
+|`y1`|float||Initial lower-mid `y`-coordinate of rectangle defining a branch segment|
+|`width`|float||Width of the rectangle|
+|`length`|float||Length of the rectangle|
+|`spike_direction`|-1 or 1|`1`|Direction spikes should face: 1=forwards; -1=backwards|
+|`spike_colour`|list|`colours.cols['green']`|Face colour of the spikes|
+|`spike_edge_colour`||`k`|Edge colour of the spikes (any valid matplotlib colour)|
+|`spike_edge_width`||`0.5`|Edge width of the spikes (any valid matplotlib colour)|
+|`spike_colour_jitter`|float|`0.1`|How much to jitter the spike's colour|
+|`spike_width`|float|`0.3`|Width of the spike (relative to the branch's width)|
+|`spike_length`|float|`2`|Length of the spike (relative to the branch's width)|
+|`spike_jitter`|float|`0.5`|How much to jitter the spike's positions|
+|`spike_layout`|float|`'regular'`|Can be 'regular' or 'random'|
+|`spike_density_x`|int|`3`|If the spike layout is `regular`, approx how many spikes should fit across the branch width|
+|`spike_density_y`|int|`3`|If the spike layout is `regular`, approx how many spikes should fit across the branch height|
+|`spike_density_rnd`|float|`10`|If the spike distribution is `random`, approx how many more spikes should be drawn than the area of the branch|
+|`spike_max_angle`|float|`40`|Maximum angle at which the spikes will disperse radially (0 means they are all parallel with the branch direction; 90 means they are perpendicular to the branch|
+|`spike_zorder`|float|`5`|Zorder of spikes|
+|`darken`|float|`None`|Amount by which to darken each R,G,B element of the spike's colours. Defined as the fraction of the way between the current value, and `0.0`|
+                
+</p>
+</details>
+
 <details><summary>[EXPAND] Landscapes; sky</summary>
 <p>
 
