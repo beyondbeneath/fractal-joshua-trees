@@ -59,7 +59,7 @@ We can even use a more simple variant - `tree.draw_dead_tree()` - to produce sce
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example7.png" height=400px>
 
-<details><summary>Check out all the interesting backgrounds to choose from - have fun exploring!</summary>
+<details><summary>[CLICK TO EXPAND] Check out all the interesting backgrounds to choose from - have fun exploring!</summary>
 <p>
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example8.png" height=600px>
 </p>
@@ -67,7 +67,7 @@ We can even use a more simple variant - `tree.draw_dead_tree()` - to produce sce
 
 ## Parameters
 
-<details><summary>Random Joshua Tree, of random style</summary>
+<details><summary>[EXPAND] Trees; Joshua Tree with random style</summary>
 <p>
 
 The function `tree.draw_random_joshua_tree()` is really designed to be used with as few parameters as possible. On it's own, you don't need to pass anything. In a scene, at a minimum you'll probably just need to call:
@@ -95,6 +95,65 @@ and it will build a random tree of random type, where the six types are selected
 </p>
 </details>
 
+<details><summary>[EXPAND] Trees; Joshua Tree with arbitrary style</summary>
+<p>
+  
+If you want to have a little bit more flexibility, use the fucnction `tree.draw_joshua_tree()`. Again while no arguments are _required_ it is expectesd you'd pass `x`, `y` and `length`. Be default, all arguments are set to those which correspond to a `Type I` tree, but in this function every parameter can be set independently. If you want to draw a random tree of a fixed style, it is possible to pass the pre-defined configurations (e.g., pass `**config.tree_type_iia`), but it is important to know which more general parameters are _not_ included in those configurations, hence they are listed in the table below.
+
+TODO
+
+</p>
+</details>
+
+<details><summary>[EXPAND] Trees; dead tree</summary>
+<p>
+  
+While quite boring on it's own (and _somewhat_ off-topic), I've kept one of the primitive tree generation functions, `tree.draw_dead_tree()` in here. They can look cool against the fiery twilight backdrops.
+
+TODO
+
+</p>
+</details>
+
+<details><summary>[EXPAND] Landscapes; sky</summary>
+<p>
+
+`landscape.draw_sky()`
+
+TODO
+
+</p>
+</details>
+
+<details><summary>[EXPAND] Landscapes; stars</summary>
+<p>
+  
+`landscape.draw_stars()`
+
+TODO
+
+</p>
+</details>
+
+<details><summary>[EXPAND] Landscapes; sun</summary>
+<p>
+  
+`landscape.draw_sun()`
+
+TODO
+
+</p>
+</details>
+
+<details><summary>[EXPAND] Landscapes; terrain</summary>
+<p>
+  
+`landscape.draw_terrain()`
+
+TODO
+
+</p>
+</details>
 
 ## Acknowledgements
 
