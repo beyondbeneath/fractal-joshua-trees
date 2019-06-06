@@ -51,11 +51,35 @@ Each of these types is mutated twice to produce new varients: firstly by reducin
 
 ## Scenes
 
-There are a number of simple functions to produce interesting looking scenes. A scene in this context it typically made up of at least a gradient sky background (`landscape.draw_sky`), and random terrain (`landscape.draw_terrain`) - though may optionally include some stars (`landscape.draw_stars`) and simulated Sun/Moon brightening (`landscape.draw_sun`). Most of these functions require arguments representing the width and height of the canvas (`w` and `h` respectively). For full details, see the examples ([script](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/example.py) and [gallery](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples)) and parameter documentation.
+There are a number of simple functions to produce interesting looking scenes. A scene in this context it typically made up of at least a gradient sky background (`landscape.draw_sky`), and random terrain (`landscape.draw_terrain`) - though may optionally include some stars (`landscape.draw_stars`) and simulated Sun/Moon brightening (`landscape.draw_sun`). Most of these functions require arguments representing the width and height of the canvas (`w` and `h` respectively). For full details, see the examples ([script](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/example.py) and [gallery](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples)) and parameter documentation below.
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example5.png" height=400px>
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example7.png" height=400px>
 
+## Parameters
+
+<details><summary>Random tree </summary>
+<p>
+  
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`x1`|float|`0`|x coordinate of the base of the tree|
+|`y1`|float|`0`|y coordinate of the base of the tree|
+|`length`|float|`10`|Length of the first tree segment|
+|`col`|list of floats|`colours.cols['brown']`|RGB colour of tree (only used if `draw_rect` is `True`)|
+|`draw_rect`|bool|`False`|Whether to draw the rectangular branch segments (behind the textures)|
+|`draw_texture`|list of bools|`[True,True,True]`|Whether to draw the main tree spikes, green leaf spikes, and yellow dying spikes respectively|
+|`darken`|float|`None`|amount by which to darken each R,G,B element of the tree's colours. Defined as the fraction of the way between the current value, and `0.0`|
+|`zorder`|int|`4`|Initial `zorder` of the first tree segment|
+|`spike_forward_params`|dict|`config.spikes_green`|Configuration of forward-facing (green) leaf spikes|
+|`spike_mid_params`|dict|`config.spikes_yellow`|Configuration of dying (yellow) leaf spikes|
+|`spike_back_params`|dict|`config.spikes_brown`|Configuration of dead (brown) trunk spikes|
+|`seed`|int|`None`|Initial seed which is passed to `np.random.seed`| for reproducability|
+
+</p>
+</details>
+
+landscape.draw_sky
 There are a range of interesting backgrounds to choose from, have fun exploring!
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example8.png" height=600px>
