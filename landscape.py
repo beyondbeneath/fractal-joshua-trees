@@ -15,7 +15,7 @@ import bisect
 # Self imports
 import colours
 
-def draw_sky(width=1600, height=900, cmap=None):
+def draw_sky(w=1600, h=900, cmap=None):
     """Draw a gradient filled sky on the current axis"""
     if cmap is None:
         rnd_key = np.random.choice(list(colours.cmaps.keys()))
@@ -81,7 +81,7 @@ def draw_uniform_stars(w, h, n=100, max_size=5, col='w'):
     return stars
 
 
-def draw_stars(w, h, n=750, max_size=5, col='w', n_ratios=[0.005,0.15,0.85], s_ratios=[1.0, 0.2, 0.02], **kwargs):
+def draw_stars(w=1600, h=900, n=750, max_size=5, col='w', n_ratios=[0.005,0.15,0.85], s_ratios=[1.0, 0.2, 0.02], **kwargs):
     """Draw n stars at random positions, but with size/number ratios to simulate a real star brightness distribution"""
     # Calculate the number of stars in each size group
     n_large = max(1,int(n*n_ratios[0]))
@@ -119,7 +119,7 @@ def makeGaussian(size, fwhm=3, center=None):
         y0 = center[1]
     return np.exp(-4*np.log(2) * ((x-x0)**2 + (y-y0)**2) / fwhm**2)
 
-def draw_sun(w, h, center=None, size=None, terrain=None, col=[1,1,1]):
+def draw_sun(w=1600, h=900, center=None, size=None, terrain=None, col=[1,1,1]):
     """Draw the sun/moon brightness effect on the current axis (essentially this is a white Gaussian blob)
     If terrain provided, position is random (x) and at the height of the terrain (y)
     if center not provided, position is random (x,y)
