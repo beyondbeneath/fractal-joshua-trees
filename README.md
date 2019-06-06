@@ -101,6 +101,7 @@ and it will build a random tree of random type, where the six types are selected
 If you want to have a little bit more flexibility, use the fucnction `tree.draw_joshua_tree()`. Again, while no arguments are _required_ it is expectesd you'd pass `x`, `y` and `length`. Be default, all arguments are set to those which correspond to a `Type I` tree, but in this function every parameter can be set independently. If you want to draw a random tree of a fixed style, it is possible to pass the pre-defined configurations (e.g., pass `**config.tree_type_iia`), but it is important to know which more general parameters are _not_ included in those configurations, hence they are listed in the table below.
 
 |Argument|Type|Default|Description|
+|---|---|---|---|
 |`x1`|float|`0`|x coordinate of the base of the tree|
 |`y1`|float|`0`|y coordinate of the base of the tree|
 |`length`|float|`10`|Length of the first tree segment|
