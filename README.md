@@ -160,10 +160,10 @@ While quite boring on it's own (and _somewhat_ off-topic), I've kept one of the 
 |---|---|---|---|
 |`w`|float|`1600`|Width of canvas|
 |`h`|float|`900`|Height of canvas|
-|`center`|float|`None`|`[x,y]` coordinate of the Sun/Moon (if `None` (default), one will be selected at random|
-|`size`|float|`None`|Size of the blob in canvas coordinates (if `None` (default), one will be selected at random|
+|`center`|list|`None`|`[x,y]` coordinate of the Sun/Moon (if `None` (default), position will be chosen at random|
+|`size`|float|`None`|Size of the blob in canvas coordinates (if `None` (default), size will be chosen at random|
 |`terrain`|np.array|`None`|Array of shape `(N,2)`, typically returned by the function `landscape.draw_terrain()`. If supplied, a random `x` coordinate will be chosen but the `y` value will be matched to the effective horizon|
-|`col`|float|`[1,1,1]`|RGB colour of the blob - note the blog is ultimatly overlaid on a gradient sky using transparency|
+|`col`|list|`[1,1,1]`|RGB colour of the blob - note the blog is ultimatly overlaid on a gradient sky using transparency|
 
 </p>
 </details>
@@ -171,11 +171,16 @@ While quite boring on it's own (and _somewhat_ off-topic), I've kept one of the 
 <details><summary>[EXPAND] Landscapes; terrain</summary>
 <p>
   
-`landscape.draw_terrain()`
+`landscape.draw_terrain()` draws a simple 2D terrain profile. Typically this should span the entire `x` axis, so the x components of `start` and `end` should be `0` and `w` respectively. Unlike most other functions, this returns the profile, so that it can be fed into other routines (for example, it's useful to know where the terrain is for plotting the Sun or Moon glow; it is also useful to know if you are going to plot a tree - it should always be below the terrain's height!).
 
 |Argument|Type|Default|Description|
 |---|---|---|---|
-|`x1`|float|`0`|x coordinate of the base of the tree|
+|`start`|list|<required>|Initial `[x,y]` position of the terrain (typically `[0,y1]`)|
+|`end`|list|<required>|Final `[x,y]` position of the terrain (typically `[w,y2])`|
+|`roughness`|float|<required>|The roughness of the terrain: low values are rougher; higher values are smoother (typically betwen `0-2`)|
+|`vertical_displacement`|float|`None`|Amount (in canvas coordinates) to displace each segment|
+|`num_of_iterations`|int|`16`|Number of times to displace the terrain - effectively represents the 'granularity' of resultant profile|
+|`col`||`'k'`|Colour to fill the terrain (any valid matplotlib colour)|
 
 </p>
 </details>
