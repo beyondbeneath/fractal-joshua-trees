@@ -19,7 +19,7 @@ In general, almost all of the functions (including landscape generation) are des
 
 ## Sample usage
 
-The highest-level function will draw a fully randomised Joshua Tree:
+The highest-level function will draw a fully randomised Joshua Tree (of course remove the `seed` argument, so that you generate a new one):
 
 ```python
 import matplotlib.pyplot as plt
