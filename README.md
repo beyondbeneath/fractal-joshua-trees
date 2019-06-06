@@ -3,7 +3,7 @@
 | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/title.png" height=400px> |
 |---|
 
-This repo contains code to produce (somewhat) realistic looking Joshua Trees in surreal landscapes, in Python & matplotlib. It uses a classic recursive fractal tree generation algorithm (with a few modifications) along with a pre-set suite of parameters & texture drawing routines, which together simulate the crazy Joshua Tree morphology.
+This repo contains code to produce (somewhat) realistic looking Joshua Trees in surreal landscapes, in Python & matplotlib. It uses a classic recursive fractal tree generation algorithm (with a few modifications: namely a depth-dependent reduction in split probabilities and random extreme angle anomalies) along with a pre-set suite of parameters & texture drawing routines, which together simulate the crazy Joshua Tree morphology.
 
 In general, almost all of the functions (including landscape generation) are designed to give sensible, randomised defaults - meaning you only have to send the bare minimum amount of arguments. Random seeds are used throughout for reproducability.
 
