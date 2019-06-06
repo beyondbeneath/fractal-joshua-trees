@@ -65,7 +65,7 @@ We can even use a more simple variant - `tree.draw_dead_tree()` - to produce sce
 </p>
 </details>
 
-## Parameters
+## Parameters & detailed explanation
 
 <details><summary>[EXPAND] Trees; Joshua Tree with random style</summary>
 <p>
@@ -85,7 +85,7 @@ and it will build a random tree of random type, where the six types are selected
 |`col`|list of floats|`colours.cols['brown']`|RGB colour of tree (only used if `draw_rect` is `True`)|
 |`draw_rect`|bool|`False`|Whether to draw the rectangular branch segments (behind the textures)|
 |`draw_texture`|list of bools|`[True,True,True]`|Whether to draw the main tree spikes, green leaf spikes, and yellow dying spikes respectively|
-|`darken`|float|`None`|amount by which to darken each R,G,B element of the tree's colours. Defined as the fraction of the way between the current value, and `0.0`|
+|`darken`|float|`None`|Amount by which to darken each R,G,B element of the tree's colours. Defined as the fraction of the way between the current value, and `0.0`|
 |`zorder`|int|`4`|Initial `zorder` of the first tree segment|
 |`spike_forward_params`|dict|`config.spikes_green`|Configuration of forward-facing (green) leaf spikes|
 |`spike_mid_params`|dict|`config.spikes_yellow`|Configuration of dying (yellow) leaf spikes|
@@ -100,7 +100,9 @@ and it will build a random tree of random type, where the six types are selected
   
 If you want to have a little bit more flexibility, use the fucnction `tree.draw_joshua_tree()`. Again while no arguments are _required_ it is expectesd you'd pass `x`, `y` and `length`. Be default, all arguments are set to those which correspond to a `Type I` tree, but in this function every parameter can be set independently. If you want to draw a random tree of a fixed style, it is possible to pass the pre-defined configurations (e.g., pass `**config.tree_type_iia`), but it is important to know which more general parameters are _not_ included in those configurations, hence they are listed in the table below.
 
-TODO
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`x1`|float|`0`|x coordinate of the base of the tree|
 
 </p>
 </details>
@@ -110,7 +112,9 @@ TODO
   
 While quite boring on it's own (and _somewhat_ off-topic), I've kept one of the primitive tree generation functions, `tree.draw_dead_tree()` in here. They can look cool against the fiery twilight backdrops.
 
-TODO
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`x1`|float|`0`|x coordinate of the base of the tree|
 
 </p>
 </details>
@@ -118,9 +122,13 @@ TODO
 <details><summary>[EXPAND] Landscapes; sky</summary>
 <p>
 
-`landscape.draw_sky()`
+`landscape.draw_sky()` simply displays a matplotlib colormap on a figure. You can pass any of the standard matplotlib maps (e.g., `plt.cm.viridis`, etc) or you can use the presets in the `colours.cmaps` dictionary (see [this example](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples/example8.png) for a visual representation of the colour gradients & keys for the dictionary).
 
-TODO
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`w`|float|`1600`|Width of canvas|
+|`h`|float|`900`|Height of canvas|
+|`cmap`|`matplotlib.colors.ListedColormap`|`None`|The colourmap to use (if `None` (default), one will be selected at random)|
 
 </p>
 </details>
@@ -128,9 +136,17 @@ TODO
 <details><summary>[EXPAND] Landscapes; stars</summary>
 <p>
   
-`landscape.draw_stars()`
+`landscape.draw_stars()` draws some small dots at random positions throughout the canvas. Rather than selecting sizes (brightness) from a distribution, it calls a sub-function three times, to give three different size layers simulating actual distribution of star brightnesses.
 
-TODO
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`w`|float|`1600`|Width of canvas|
+|`h`|float|`900`|Height of canvas|
+|`n`|int|`750`|Number of stars|
+|`max_size`|int|`5`|Size of the brightest star (pts)|
+|`col`|-|`'w'`|Colour of the stars (any valid matplotlib colour)|
+|`n_ratios`|list|`[0.005,0.15,0.85]`|Fraction of the `n` stars which will be large, medium and small|
+|`s_ratios`|list|`[1.0, 0.2, 0.02]`|Fractio of `max_size` for the large, medium and small stars|
 
 </p>
 </details>
@@ -138,9 +154,16 @@ TODO
 <details><summary>[EXPAND] Landscapes; sun</summary>
 <p>
   
-`landscape.draw_sun()`
+`landscape.draw_sun()` produces a simulated 'glow' from the Sun or Moon (both could be feasible, depending on which background is chosen) by generating a two-dimensional Gaussian blob, and (optionally) placing it at the height of the effective horizon as caused by some terrain, `t`.
 
-TODO
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`w`|float|`1600`|Width of canvas|
+|`h`|float|`900`|Height of canvas|
+|`center`|float|`None`|`[x,y]` coordinate of the Sun/Moon (if `None` (default), one will be selected at random|
+|`size`|float|`None`|Size of the blob in canvas coordinates (if `None` (default), one will be selected at random|
+|`terrain`|np.array|`None`|Array of shape `(N,2)`, typically returned by the function `landscape.draw_terrain()`. If supplied, a random `x` coordinate will be chosen but the `y` value will be matched to the effective horizon|
+|`col`|float|`[1,1,1]`|RGB colour of the blob - note the blog is ultimatly overlaid on a gradient sky using transparency|
 
 </p>
 </details>
@@ -150,7 +173,9 @@ TODO
   
 `landscape.draw_terrain()`
 
-TODO
+|Argument|Type|Default|Description|
+|---|---|---|---|
+|`x1`|float|`0`|x coordinate of the base of the tree|
 
 </p>
 </details>
