@@ -100,34 +100,34 @@ and it will build a random tree of random type, where the six types are selected
   
 If you want to have a little bit more flexibility, use the fucnction `tree.draw_joshua_tree()`. Again, while no arguments are _required_ it is expectesd you'd pass `x`, `y` and `length`. Be default, all arguments are set to those which correspond to a `Type I` tree, but in this function every parameter can be set independently. If you want to draw a random tree of a fixed style, it is possible to pass the pre-defined configurations (e.g., pass `**config.tree_type_iia`), but it is important to know which more general parameters are _not_ included in those configurations, hence they are listed in the table below.
 
-|Argument|Type|Default|Description|
-|---|---|---|---|
-|`x1`|float|`0`|x coordinate of the base of the tree|
-|`y1`|float|`0`|y coordinate of the base of the tree|
-|`length`|float|`10`|Length of the first tree segment|
-|`length_change`|float|`0.8`|Average fraction by which to (typically) reduce the branch lengh each iteration|
-|`length_vary_prop`|float|`0.2`|Proportion of `length_change` by which to randomise the length reduction|
-|`length_width`|float|`0.2`|The initial width, expressed as a fraction of the initial length|
-|`width`|float|`None`|The inital width (if `None` will resort to using `length_width` to calculate width)|
-|`width_change`|float|`0.9`|Fraction by which to reduce the branch width each iteration|
-|`angle`|float|`-90`|Initial angle of tree: `-90` is straight up, it can be interesting to randomise this to produce more slanted trees|
-|`angle_change`|float|`30`|Average amount by which to change the angle at each split|
-|`angle_vary_prop`|float|`0.4`|Proportion of `angle_change` by which to randomise the angle change|
-|`large_angle_prob`|float|`0.0`|Probability of there being an extreme, AKA `large_angle` split|
-|`large_angle`|float|`60`|What the large angle is|
-|`split_prob`|float|`0.9`|Probability each iteration of having a split to one side|
-|`split_prob_change`|float|`1.0`|Fraction by which `split_prob` changes each iteration - values less than one result in longer single branches, and often more lopsided trees|
-|`depth`|int|`6`|How many times to iterate - this automatically reduces each recursive call|
-|`max_depth`|int|`6`|How many times to iterate - this should be the same as `depth` initially and never changes - used to scale some things|
-|`col`|list of floats|`colours.cols['brown']`|RGB colour of tree (only used if `draw_rect` is `True`)|
-|`draw_rect`|bool|`False`|Whether to draw the rectangular branch segments (behind the textures)|
-|`draw_texture`|list of bools|`[True,True,True]`|Whether to draw the main tree spikes, green leaf spikes, and yellow dying spikes respectively|
-|`darken`|float|`None`|Amount by which to darken each R,G,B element of the tree's colours. Defined as the fraction of the way between the current value, and `0.0`|
-|`zorder`|int|`4`|Initial `zorder` of the first tree segment|
-|`spike_forward_params`|dict|`config.spikes_green`|Configuration of forward-facing (green) leaf spikes|
-|`spike_mid_params`|dict|`config.spikes_yellow`|Configuration of dying (yellow) leaf spikes|
-|`spike_back_params`|dict|`config.spikes_brown`|Configuration of dead (brown) trunk spikes|
-|`seed`|int|`None`|Initial seed which is passed to `np.random.seed`| for reproducability|
+|Argument|Type|Default|In `config.py?`|Description|
+|---|---|---|---|---|
+|`x1`|float|`0`||x coordinate of the base of the tree|
+|`y1`|float|`0`||y coordinate of the base of the tree|
+|`length`|float|`10`||Length of the first tree segment|
+|`width`|float|`None`||The inital width (if `None` will resort to using `length_width` to calculate width)|
+|`length_change`|float|`0.8`|✅|Average fraction by which to (typically) reduce the branch lengh each iteration|
+|`length_vary_prop`|float|`0.2`|✅|Proportion of `length_change` by which to randomise the length reduction|
+|`length_width`|float|`0.2`|✅|The initial width, expressed as a fraction of the initial length|
+|`width_change`|float|`0.9`|✅|Fraction by which to reduce the branch width each iteration|
+|`angle`|float|`-90`|✅|Initial angle of tree: `-90` is straight up, it can be interesting to randomise this to produce more slanted trees|
+|`angle_change`|float|`30`|✅|Average amount by which to change the angle at each split|
+|`angle_vary_prop`|float|`0.4`|✅|Proportion of `angle_change` by which to randomise the angle change|
+|`large_angle_prob`|float|`0.0`|✅|Probability of there being an extreme, AKA `large_angle` split|
+|`large_angle`|float|`60`|✅|What the large angle is|
+|`split_prob`|float|`0.9`|✅|Probability each iteration of having a split to one side|
+|`split_prob_change`|float|`1.0`|✅|Fraction by which `split_prob` changes each iteration - values less than one result in longer single branches, and often more lopsided trees|
+|`depth`|int|`6`|✅|How many times to iterate - this automatically reduces each recursive call|
+|`max_depth`|int|`6`|✅|How many times to iterate - this should be the same as `depth` initially and never changes - used to scale some things|
+|`col`|list of floats|`colours.cols['brown']`||RGB colour of tree (only used if `draw_rect` is `True`)|
+|`draw_rect`|bool|`False`||Whether to draw the rectangular branch segments (behind the textures)|
+|`draw_texture`|list of bools|`[True,True,True]`||Whether to draw the main tree spikes, green leaf spikes, and yellow dying spikes respectively|
+|`darken`|float|`None`||Amount by which to darken each R,G,B element of the tree's colours. Defined as the fraction of the way between the current value, and `0.0`|
+|`zorder`|int|`4`||Initial `zorder` of the first tree segment|
+|`spike_forward_params`|dict|`config.spikes_green`||Configuration of forward-facing (green) leaf spikes|
+|`spike_mid_params`|dict|`config.spikes_yellow`||Configuration of dying (yellow) leaf spikes|
+|`spike_back_params`|dict|`config.spikes_brown`||Configuration of dead (brown) trunk spikes|
+|`seed`|int|`None`||Initial seed which is passed to `np.random.seed`| for reproducability|
                     
 </p>
 </details>
