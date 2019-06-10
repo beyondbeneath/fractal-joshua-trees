@@ -1,11 +1,13 @@
 # Blog
 
 This blog describes how to prcoedurally generate fractal-like Joshua Trees using `matplotlib` - something exceedingly unuseful. It is split into five broad sections:
+
 1. Review of "classic" fractal trees
 2. Parameter exploration & algorithm tweaks
 3. Textures
 4. Putting it all together
 5. Forests & scenes
+6. Interactive Javascript version?
 
 ## Review of fracal tree generation
 
@@ -35,11 +37,11 @@ def drawTree(x1, y1, angle, length, depth):
         drawTree(x2, y2, angle+ANGLE_CHANGE, length*LENGTH_CHANGE, depth-1)
 ```
 
-What we get is a nice symmetric tree (A), with four (`DEPTH`) distinct branch segments. The simplest modification to this basic method is to introduce some randomness to both the angles and lengths (from here on in, we'll also seed each function with a number so the results are directly reproducible). To do this, we simply allow them to both to fluctuate by some proportion of themselves (`LENGTH_VARY_PROP` and `ANGLE_VARY_PROP`).
+What we get is a nice symmetric tree [(A)](blog1a.png), with four (`DEPTH`) distinct branch segments. The simplest modification to this basic method is to introduce some randomness to both the angles and lengths (from here on in, we'll also seed each function with a number so the results are directly reproducible). To do this, we simply allow them to both to fluctuate by some proportion of themselves (`LENGTH_VARY_PROP` and `ANGLE_VARY_PROP`).
 
-Immediately we can see this tree (B) is starting to look much more natural. The last major modification we will make is to set the probability of a split (`SPLIT_PROB`). This means we should get less symmetry in terms of the branches. At this stage, we'll also increase the number of iterations (`DEPTH`) since it will make more realistic looking trees.
+Immediately we can see this tree [(B)](blog1b.png) is starting to look much more natural. The last major modification we will make is to set the probability of a split (`SPLIT_PROB`). This means we should get less symmetry in terms of the branches. At this stage, we'll also increase the number of iterations (`DEPTH`) since it will make more realistic looking trees.
 
-Things are looking pretty good at this stage: tree (C) has random angle & length variation, as well as some branches "missing" giving a more natural variation. Before we wrap up this review section, it's worth touching briefly on the aesthetics. The trees so far have been drawn with constant width, and by simply reducing this width each iteration (D), it can make much nicer looking trees (for this we use the `linewidth` or `lw` argument in `plt.plot` - this isn't too versatile since it is specified in units of "points", but it will be changed anyway in Section 2).
+Things are looking pretty good at this stage: tree [(C)](blog1c.png) has random angle & length variation, as well as some branches "missing" giving a more natural variation. Before we wrap up this review section, it's worth touching briefly on the aesthetics. The trees so far have been drawn with constant width, and by simply reducing this width each iteration [(D)](blog1d.png), it can make much nicer looking trees (for this we use the `linewidth` or `lw` argument in `plt.plot` - this isn't too versatile since it is specified in units of "points", but it will be changed anyway in Section 2).
 
 <details><summary>[EXPAND] Code with added features</summary>
 <p>
