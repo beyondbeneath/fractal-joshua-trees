@@ -2,14 +2,14 @@
 
 This blog describes how to prcoedurally generate fractal-like Joshua Trees using `matplotlib` - something exceedingly unuseful. It is split into five broad sections:
 
-1. Review of "classic" fractal trees
+1. Review of fracal tree generation
 2. Parameter exploration & algorithm tweaks
 3. Textures
 4. Putting it all together
 5. Forests & scenes
 6. Interactive Javascript version?
 
-## Review of fracal tree generation
+## 1. Review of fracal tree generation
 
 |Basic tree (A)|Length & angle randomness (B)|Split probabilities & increased depth (C)|Aesthetic branch thinning (D)|
 |---|---|---|---|
@@ -89,3 +89,89 @@ plt.title('seed {}'.format(seed))
 </details>
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog1e.png">
+
+## 2. Parameter exploration & algorithm tweaks
+
+Before playing with any more code, we really need to inspect some real Joshua Trees and try and describe how they behave, in terms of the parameters of the model we have built up so far. Likely we will end up with a number of different sets of parameters, that best describe different styles of trees.  The general approach will be, for a number of classic Joshua Tree photographs:
+
+1. Describe it qualitatively in terms of our model parameters
+2. Take a guess at which constants might work
+3. Generate a lot of examples to see how it works
+4. Rinse and repeat (this step, essentially trial & error, won't be shown)
+
+Here are a bunch of different trees:
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2a.png" width=75% height=75%>
+
+<details><summary>[EXPAND] Sources of photographs</summary>
+<p>
+
+1. https://www.axios.com/government-shutdown-national-parks-joshua-trees-98350e1b-496b-4508-a0d5-45bd4074e42b.html
+2. https://www.smithsonianmag.com/smart-news/californias-joshua-trees-are-under-threat-180959991/
+3. https://gearpatrol.com/2015/06/30/joshua-tree-travel-guide/
+4. https://gearpatrol.com/2015/06/30/joshua-tree-travel-guide/
+5. https://www.washingtonpost.com/nation/2019/01/11/travesty-this-nation-people-are-destroying-joshua-trees-joshua-tree-national-park
+6. https://backroadplanet.com/best-hikes-joshua-tree-day-trip/
+7. https://www.palmspringslife.com/rock-around-the-clock/
+8. http://www.ghumr.com/joshua-tree-national-park-flintstone-land/
+9. http://www.ghumr.com/joshua-tree-national-park-flintstone-land/
+10. https://www.nationalgeographic.com/travel/national-parks/joshua-tree-national-park/
+11. https://en.wikipedia.org/wiki/Yucca_brevifolia#/media/File:JoshuaTreesMexico.jpg
+12. https://www.tripsavvy.com/joshua-tree-national-park-4116596
+13. https://www.tripsavvy.com/joshua-tree-national-park-4116596
+14. http://cannundrum.blogspot.com/2010/07/joshua-tree.html
+  
+</p>
+</details>
+
+Observations:
+* In general, the trunk size remains relativelty constant from the base all the way to the terminal branches (high `WIDTH_CHANGE`)
+* Larger trees (#1,#2) can be fairly symmetrical (high `LENGTH_CHANGE`)
+* Some trees can be slanted (#5,#7,#10)
+* All but the largest trees have tall initial segments
+* Tall, "simple" trees (#3,#6,#8) have low depth (~3?), long base trunks (large `INITIAL_LENGTH`), and rapidly shrink (large `LENGTH_CHANGE`)
+* It's not uncommon to have huge angle variations on some branches (sometimes 90 degrees)
+* There are often long single, yet curvy, branches (this indicates that `SPLIT_PROB` should decrease with depth, not currently implemented)
+
+From [this description](http://www.flowersociety.org/JT_Botanical.htm):
+
+> Unlike a typical tree branch, this new stem grows rigidly in a totally different direction, at an angle, horizontally, or even down towards the ground. Each branching stem also abruptly ends its growth after blossoming, and further branches veer off in new directions. As well as ending in blossoming, branching may occur where a stem has been damaged by insects.
+> 
+> After many years, some Joshua trees develop a complex system of twisted branches growing in many directions. Others develop a more harmonious tree shape, while still others remain mostly vertical. The amazing variety of shapes and growth patterns imparts an unusual individuality to each tree.
+
+These images show some trials to mimic the two broad styles of trees: firstly the larger broader trees (e.g., #1, #2); and secondly the taller trees (e.g., #3, #6, #8) with less angle variation:
+
+|Example `Type I`|Example `Type II`|
+|---|---|
+| <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2b.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2c.png"> |
+
+These two simple parameter combinations (designated now as `Type I` and `Type II` trees respectively) allow a decent first pass at generating two drastically different stlyed trees. Amazingly, even just be keeping the trunks the same width it makes a huge different in terms of their similarity to actual trees. This is a list of the parameters used demonstrating the key differences which produce the features:
+
+|Parameter|`Type I`|`Type II`|
+|---|---|---|
+|`LENGTH_CHANGE`|0.8|0.5|
+|`ANGLE_CHANGE`|30|20|
+|`ANGLE_VARY_PROP`|0.4|1.0|
+|`LENGHT_WIDTH_RATIO`|0.2|0.1|
+|`SPLIT_PROB`|0.90|0.95|
+|`DEPTH`|6|4|
+
+Now we can think about adding some more functionality to the system. First, let's allow the split probability (`SPLIT_PROB`) to decrease by a factor of `SPLIT_PROB_CHANGE` with each iteration, which should have the effect of producing long, curvy branches, which can be demonstrated by looking at the `Type I` examples shown earlier with the added functionality - the same seeds are used to show how the trees evolve differently:
+
+|`Type I` with fixed split probability|`Type I` with decreasing split probability|
+|---|---|
+| <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2b.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2d.png"> |
+
+These variants (with decreasing split probabilities, `SPLIT_PROB_CHANGE`) will be designated `Type Ia` and `Type IIa`. Note we can have the previous `Type I` trees (at a value of `1.0`) or increasingly weirder versions of these trees (at lower values of `0.9`). For these trees anything lower than `0.9` and the split probality decreases too rapidly resulting in the trees being too bare. It is also noted `Type II` trees need to be compensated with larger `DEPTH` in order to allow curvature to form & add a nice amount of weirdness.
+
+The next thing to add is the extreme angle changes. A simple way of doing this is just to enforce a large angle change (`LARGE_ANGLE`) at some set probability (`LARGE_ANGLE_PROB`):
+
+|`Type Ia`| `Type Ia` with probabilistic large angles|
+|---|---|
+| <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2e.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog2f.png"> |
+
+These variants (with decreasing split probabilities AND random large angles) will be designated `Type Ib` and `Type IIb`.
+
+While not perfect, this probably gives us enough to work with for now - later tweaks can be made if necessary. The next steps are to add the textures & colours.
+
+## 3. Textures
