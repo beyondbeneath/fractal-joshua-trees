@@ -14,8 +14,8 @@ In general, almost all of the functions (including landscape generation) are des
 * [`colours.py`](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/colours.py) - some default colours & colourmaps
 * [`config.py`](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/config.py) - all the tree-specific parameters
 * [`examples.py`](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples.py) - script to reproduce the output found in [`examples/`](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/examples)
-* `ipynb/` - folder containing IPython Notebooks used in development of the code (COMING SOON!)
-* `blog/` - series of articles describing the process of developing the code (COMING SOON!)
+* [`ipynb/`](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/ipynb) - folder containing IPython Notebooks used in development of the code
+* [`blog/`](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog) - series of articles describing the process of developing the code
 
 ## Sample usage
 
