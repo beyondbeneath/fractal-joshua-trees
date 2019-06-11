@@ -9,6 +9,8 @@ This blog describes how to prcoedurally generate fractal-like Joshua Trees using
 5. Forests & scenes
 6. Interactive Javascript version?
 
+Slightly more details and code can be found in the [development IPython Notebook](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/ipynb/blog.ipynb) - though it is a little messy in parts.
+
 ## 1. Review of fracal tree generation
 
 |Basic tree (A)|Length & angle randomness (B)|Split probabilities & increased depth (C)|Aesthetic branch thinning (D)|
@@ -198,7 +200,7 @@ The final result is pretty close to reality, and it makes sense. If you consider
 
 Having a decent physicaly model and colour routine means we can combine branch segments (brown), leaf segments (green), and the dying leaves (yellow) all together:
 
-<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3c.png">
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3c.png" height=300px>
 
 ## 4. Putting it all together
 
@@ -211,3 +213,22 @@ Before dressing the tree fully up in spikes, I had a look at covering the termin
 
 | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog4b.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog4c.png"> |
 |---|---|
+
+## 5. Forests & scenes
+
+The idea here was to produce Joshua Tree "scenes", where a scene would consist of some background sky, a landscape, etc. These are relatively simple and not the focus of this repo, but a few details will be provided.
+
+I initiall started with this (landscape generator)[https://github.com/s23tang/landscape-generator] to draw some terrain, though ultimately rewrote the function as it had a lot of parts I didn't need so I reduced dependencies and simplified the functions. Still, by placing some darkened trees on top of the output, were some cool results:
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog5a.png">
+
+Next, I replaced the plain background with some gradient fills, and added a simple scattering of stars.
+
+| <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog5b.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog5c.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog5d.png"> |
+|---|---|---|
+
+Slightly more details are available in the [landscape IPython Notebook](https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/ipynb/landscape.ipynb).
+
+## 6. Interactive Javascript version?
+
+Being comfortable in Python, this was great to prototype - but ultimately it is a little bit of work to produce scenes, and a lot of iterations can be required to get things right. To combat this, and learn Javascript at the same time, I am working on a Javascript port of the code, where all the parameters are interactively configurable, re-seeded etc. Check out the [joshua-js](https://github.com/beyondbeneath/joshua-js) repo for details on that progress.
