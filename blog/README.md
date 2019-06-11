@@ -176,8 +176,6 @@ While not perfect, this probably gives us enough to work with for now - later tw
 
 ## 3. Textures
 
-## 3 - Textures
-
 Our simple black silhouette-like branch segments are not yet resembling Joshua Trees because they are lacking two distinct characteristics: the leaves and the shaggy bark which covers parts of the trunk. Actually, upon reading it appears the spiky bark are actually older leaves which change from upright green spikes, to downward facing brown-grey spikes which protect the trunk:
 
 > The younger ones remain green, but as they age the leaves fade to gray and become a fibrous residue which droops and finally covers the branch or trunk in a protective coating.
@@ -192,12 +190,24 @@ Considering a simple experiment, we can (1) produce a branch segment; (2) random
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3a.png">
 
-Unfortunately this didn't look right for the green leafy spikes - it just looked too disorganised, this is the third image (3) below. So a few more iterations were made: (4) create a regular grid of spikes - this is starting to look better; (5) naively displace the pointy ends down a bit (to retain their "length" as they point outward); (6) use trig to create a more realistic pointing function:
+Unfortunately this didn't look right for the green leafy spikes - it just looked too disorganised, this is the third image (3) below. So a few more iterations were made: (4) create a regular grid (with slight random jittering) of spikes - this is starting to look better; (5) naively displace the pointy ends down a bit (to retain their "length" as they point outward); (6) use trig to create a more realistic pointing function:
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3b.png">
 
 The final result is pretty close to reality, and it makes sense. If you consider the 3D structure of what is happening, the spikes are roughly the same size and all point outward at a fixed angle. The reason we observe an increase in radial pointing as you move away from the branch center is just a 2D projection effect: the spikes in the middle are still facing out; they are just directly in our line of sight so we can't see it.
 
-Having a decent physicaly model and colour routine means we can combine branch segments (brown), leaf segments (green), and the dying leaves (yellow) all together with a parameterised function.
+Having a decent physicaly model and colour routine means we can combine branch segments (brown), leaf segments (green), and the dying leaves (yellow) all together:
 
-And drawing this on top of our trees from earlier gives remarkably good results. One key consideration made was that the green spikes cannot simply be draw on the last segment, since that creates weird angle changes which aren't physically realistic. In practice what happens is the green spikes point out at the same angle as the previous branch, so this was accommodated for.
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3c.png">
+
+## 4. Putting it all together
+
+To create a truly "random" tree from a number of different interesting sets of parameters, we simply select a parameter set `[Type I, Type Ia, Type Ib , 'Type II', 'Type IIc', 'Type IIb']` from a fixed probability distribution `[0.1, 0.2, 0.2, 0.1, 0.2, 0.2]`. These can be modified, but were chosen to slightly downweight the uninteresting trees. Now, having abstracted the parameter choice we can have one function to generate an effectively very random tree:
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog4a.png">
+
+Before dressing the tree fully up in spikes, I had a look at covering the terminal branch in the green spikes and got a result which obviously wasn't how they look - rather the green spikes should head out the same direction of the last branch segment. Making this adjustment and fitting out the whole tree, produces, well, a Joshua Tree:
+
+
+| <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog4b.png"> | <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog4c.png"> |
+|---|---|
