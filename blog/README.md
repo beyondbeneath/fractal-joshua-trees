@@ -192,4 +192,12 @@ Considering a simple experiment, we can (1) produce a branch segment; (2) random
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3a.png">
 
+Unfortunately this didn't look right for the green leafy spikes - it just looked too disorganised, this is the third image (3) below. So a few more iterations were made: (4) create a regular grid of spikes - this is starting to look better; (5) naively displace the pointy ends down a bit (to retain their "length" as they point outward); (6) use trig to create a more realistic pointing function:
+
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3b.png">
+
+The final result is pretty close to reality, and it makes sense. If you consider the 3D structure of what is happening, the spikes are roughly the same size and all point outward at a fixed angle. The reason we observe an increase in radial pointing as you move away from the branch center is just a 2D projection effect: the spikes in the middle are still facing out; they are just directly in our line of sight so we can't see it.
+
+Having a decent physicaly model and colour routine means we can combine branch segments (brown), leaf segments (green), and the dying leaves (yellow) all together with a parameterised function.
+
+And drawing this on top of our trees from earlier gives remarkably good results. One key consideration made was that the green spikes cannot simply be draw on the last segment, since that creates weird angle changes which aren't physically realistic. In practice what happens is the green spikes point out at the same angle as the previous branch, so this was accommodated for.
