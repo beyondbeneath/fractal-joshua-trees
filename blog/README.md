@@ -175,3 +175,21 @@ These variants (with decreasing split probabilities AND random large angles) wil
 While not perfect, this probably gives us enough to work with for now - later tweaks can be made if necessary. The next steps are to add the textures & colours.
 
 ## 3. Textures
+
+## 3 - Textures
+
+Our simple black silhouette-like branch segments are not yet resembling Joshua Trees because they are lacking two distinct characteristics: the leaves and the shaggy bark which covers parts of the trunk. Actually, upon reading it appears the spiky bark are actually older leaves which change from upright green spikes, to downward facing brown-grey spikes which protect the trunk:
+
+> The younger ones remain green, but as they age the leaves fade to gray and become a fibrous residue which droops and finally covers the branch or trunk in a protective coating.
+
+So to make them look better, we will simulate these two effects.
+
+### Trunk spikes
+
+The trunk spikes can be simulated by a host of downard-facing near-isoscelese triangles. By observing the samples above, we can see a few important parameters we might wish to include: firstly, the density of the spikes decreases as you move up toward the tree (and often, they only begin appearing after the first split); 2) as you get closer and closer to the green leaves, they start to point radially out (rather than directly 'down' along the axis of the trunk). So both the density and radial pointing are proportional to how close to the terminal branch they are.
+
+Considering a simple experiment, we can (1) produce a branch segment; (2) randomly choose positions from which a spike will originate; (3) draw a downward-facing triangle; (4) radially point them out, proportional to their distance from the center; (5) order the spikes so produce a more physically realistic pattern; (6) assign a base colour and small per-spike colour variation to them all. This simple workflow produces pretty reasonably looking tree branch segments:
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3a.png">
+
+<img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog3b.png">
