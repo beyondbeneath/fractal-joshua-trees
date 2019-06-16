@@ -218,7 +218,7 @@ Before dressing the tree fully up in spikes, I had a look at covering the termin
 
 The idea here was to produce Joshua Tree "scenes", where a scene would consist of some background sky, a landscape, etc. These are relatively simple and not the focus of this repo, but a few details will be provided.
 
-I initiall started with this (landscape generator)[https://github.com/s23tang/landscape-generator] to draw some terrain, though ultimately rewrote the function as it had a lot of parts I didn't need so I reduced dependencies and simplified the functions. Still, by placing some darkened trees on top of the output, were some cool results:
+I initiall started with this [landscape generator](https://github.com/s23tang/landscape-generator) to draw some terrain, though ultimately rewrote the function as it had a lot of parts I didn't need so I reduced dependencies and simplified the functions. Still, by placing some darkened trees on top of the output, were some cool results:
 
 <img src="https://github.com/beyondbeneath/fractal-joshua-trees/blob/master/blog/blog5a.png">
 
